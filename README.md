@@ -3,251 +3,61 @@ Muhammad Rizky Febrianto | 2409116045
 
 ## Deskripsi Singkat
 
-Program **Manajemen Surat** ini dibuat menggunakan bahasa Java dengan konsep **CRUD (Create, Read, Update, Delete)**.
+Program ini dibuat menggunakan bahasa pemrograman Java yang dilengkapi fitur CRUD (Create, Read, Update, Delete) dan Menerapkan perulangan agar program tidak berhenti kecuali user memilih menu keluar.
 Program memungkinkan pengguna untuk:
 
 * Membuat surat baru dengan judul, nomor, dan tanggal.
 * Melihat daftar surat yang sudah dimasukkan.
 * Memperbarui status surat berdasarkan nomor surat.
-* Menghapus surat tertentu.
+* Menghapus surat berdasarkan nomor surat.
 * Keluar dari program.
-
----
 
 ## Alur Program
 
-1. **Tampilan Menu Utama**
+1. Tampilan Menu Utama
    User diberikan 5 pilihan menu: Membuat Surat, Lihat Daftar Surat, Update Status, Hapus Surat, atau Keluar.
    Input menu diproses menggunakan `switch-case`.
 
-2. **Membuat Surat (Create)**
+   <img width="204" height="143" alt="image" src="https://github.com/user-attachments/assets/1dde46ae-af8f-47a8-b278-2db237b50732" />
+
+
+3. Membuat Surat (Create)
 
    * Input: Judul, Nomor, dan Tanggal surat.
    * Surat otomatis memiliki status default `"Pending"`.
    * Disimpan ke dalam `ArrayList<Surat>`.
+     
+     <img width="369" height="205" alt="image" src="https://github.com/user-attachments/assets/262ff6fb-72a7-436f-b7f7-d78ad001bd7b" />
 
-3. **Tampilkan Daftar Surat (Read)**
+4. Tampilkan Daftar Surat (Read)
 
-   * Jika daftar kosong → tampil pesan `"Belum ada surat"`.
-   * Jika ada → tampil semua surat dengan format:
+   * Jika daftar kosong maka akan tampil pesan `"Belum ada surat"`.
+     
+     <img width="205" height="155" alt="image" src="https://github.com/user-attachments/assets/99eab342-ecf2-4c31-a30b-81751a1def6a" />
 
-     ```
-     Nama Surat : Undangan Rapat
-     Nomor Surat : 001/A/2025
-     Tanggal Masuk Surat : 09/09/2025
-     Status Surat : Pending
-     ```
+   * Jika ada maka akan tampil semua surat dengan format:
+     
+     <img width="302" height="222" alt="image" src="https://github.com/user-attachments/assets/c79b3497-de8a-4a07-ad23-4281c9ba645b" />
 
-4. **Update Status Surat (Update)**
+5. Update Status Surat (Update)
 
-   * Cari surat berdasarkan **Nomor Surat**.
+   * Cari surat berdasarkan Nomor Surat.
    * Jika ketemu, user bisa mengganti status (misalnya: `"Selesai"`, `"Dalam Proses"`).
-   * Jika tidak ditemukan → tampil pesan `"Surat Tidak Ada"`.
+   * Jika tidak ditemukan maka akan tampil pesan `"Surat Tidak Ada"`.
+     
+     <img width="302" height="412" alt="image" src="https://github.com/user-attachments/assets/b06e698a-9a63-457d-b964-f0f808bb373f" />
 
-5. **Menghapus Surat (Delete)**
+6. Menghapus Surat (Delete)
 
-   * Cari surat berdasarkan **Nomor Surat**.
-   * Jika ketemu → surat dihapus dari daftar.
-   * Jika tidak ditemukan → tampil pesan `"Surat Tidak Ada"`.
+   * Cari surat berdasarkan Nomor Surat.
+   * Jika ketemu maka surat dihapus dari daftar.
+   * Jika tidak ditemukan maka akan tampil pesan `"Surat Tidak Ada"`.
 
-6. **Keluar Program**
+     <img width="208" height="324" alt="image" src="https://github.com/user-attachments/assets/18542e33-4493-4f68-a643-8438ab227c2d" />
+
+
+7. Keluar Program
 
    * Program berhenti saat user memilih menu `0`.
-
----
-
-## Penjelasan Kode
-
-1. **Deklarasi Class dan Struktur Data**
-
-```java
-static class Surat {
-    String judul, nomor, tanggal, status;
-
-    Surat(String judul, String nomor, String tanggal) {
-        this.judul = judul;
-        this.nomor = nomor;
-        this.tanggal = tanggal;
-        this.status = "Pending";
-    }
-}
-```
-
-Program menggunakan **class Surat** untuk menyimpan data surat dengan atribut `judul`, `nomor`, `tanggal`, dan `status`. Default status adalah `"Pending"`.
-
-2. **ArrayList untuk Menyimpan Data**
-
-```java
-ArrayList<Surat> daftarSurat = new ArrayList<>();
-```
-
-Semua surat yang dibuat akan disimpan di dalam `daftarSurat`.
-
-3. **Menu Utama dengan Do-While**
-
-```java
-do {
-    System.out.println("======= Menu Utama =======");
-    System.out.println("1. Membuat Surat");
-    System.out.println("2. Tampilkan Daftar Surat");
-    System.out.println("3. Update Status Surat");
-    System.out.println("4. Menghapus Surat");
-    System.out.println("0. Keluar");
-    ...
-} while (pilihan != 0);
-```
-
-Menu ditampilkan berulang hingga user memilih keluar (`0`).
-
-4. **Menambahkan Surat**
-
-```java
-case 1:
-    System.out.print("Masukkan Nama Surat: ");
-    String Judul = input.nextLine();
-
-    System.out.print("Masukkan Nomor Surat: ");
-    String Nomor = input.nextLine();
-
-    System.out.print("Masukkan Tanggal Masuk Surat (dd/mm/yyyy): ");
-    String Tanggal = input.nextLine();
-
-    daftarSurat.add(new Surat(Judul, Nomor, Tanggal));
-    System.out.println("Surat Telah Ditambahkan");
-    break;
-```
-
-User menginput judul, nomor, dan tanggal. Surat otomatis tersimpan dengan status `"Pending"`.
-
-5. **Menampilkan Daftar Surat**
-
-```java
-case 2:
-    if (daftarSurat.isEmpty()) {
-        System.out.println("Belum ada surat");
-    } else {
-        for (Surat i : daftarSurat) {
-            System.out.println("Nama Surat : " + i.judul);
-            System.out.println("Nomor Surat : " + i.nomor);
-            System.out.println("Tanggal Masuk Surat : " + i.tanggal);
-            System.out.println("Status Surat : " + i.status);
-            System.out.println("--------------------------");
-        }
-    }
-    break;
-```
-
-Program akan menampilkan seluruh surat yang sudah ada. Jika kosong, tampilkan pesan `"Belum ada surat"`.
-
-6. **Update Status Surat**
-
-```java
-case 3:
-    System.out.print("Masukkan Nomor Surat: ");
-    String cariNomor = input.nextLine();
-
-    for (Surat i : daftarSurat) {
-        if (i.nomor.equals(cariNomor)) {
-            System.out.print("Masukkan status surat terbaru: ");
-            String statusBaru = input.nextLine();
-            i.status = statusBaru;
-            System.out.println("Status Surat Telah TerUpdate");
-        } else {
-            System.out.println("Surat Tidak Ada");
-        }
-    }
-    break;
-```
-
-User memasukkan nomor surat → status surat akan diperbarui. Jika tidak ada, tampil pesan `"Surat Tidak Ada"`.
-
-7. **Menghapus Surat**
-
-```java
-case 4:
-    System.out.print("Masukkan Nomor Surat: ");
-    cariNomor = input.nextLine();
-
-    for (int i = 0; i < daftarSurat.size(); i++) {
-        if (daftarSurat.get(i).nomor.equals(cariNomor)) {
-            daftarSurat.remove(i);
-            System.out.println("Surat Berhasil Dihapus");
-        } else {
-            System.out.println("Surat Tidak Ada");
-        }
-    }
-    break;
-```
-
-User memasukkan nomor surat → jika ketemu, data surat dihapus dari `ArrayList`.
-
-8. **Keluar Program**
-
-```java
-case 0:
-    System.out.println("Terima kasih telah menggunakan program kami");
-    break;
-```
-
-Program berhenti ketika user memilih `0`.
-
----
-
-## Output Program (Ilustrasi)
-
-1. **Menu Utama**
-
-```
-======= Menu Utama =======
-1. Membuat Surat
-2. Tampilkan Daftar Surat
-3. Update Status Surat
-4. Menghapus Surat
-0. Keluar
-==========================
-Masukkan Pilihan Anda:
-```
-
-2. **Tambah Surat**
-
-```
-Masukkan Nama Surat: Undangan Rapat
-Masukkan Nomor Surat: 001/A/2025
-Masukkan Tanggal Masuk Surat (dd/mm/yyyy): 09/09/2025
-Surat Telah Ditambahkan
-```
-
-3. **Lihat Daftar Surat**
-
-```
-Nama Surat : Undangan Rapat
-Nomor Surat : 001/A/2025
-Tanggal Masuk Surat : 09/09/2025
-Status Surat : Pending
---------------------------
-```
-
-4. **Update Status Surat**
-
-```
-Masukkan Nomor Surat: 001/A/2025
-Masukkan status surat terbaru: Selesai
-Status Surat Telah TerUpdate
-```
-
-5. **Hapus Surat**
-
-```
-Masukkan Nomor Surat: 001/A/2025
-Surat Berhasil Dihapus
-```
-
-6. **Keluar**
-
-```
-Terima kasih telah menggunakan program kami
-```
-
----
-
-👉 Apakah mau saya buatkan versi **README.md** siap pakai seperti file yang Anda upload, biar bisa langsung dipakai di repo Anda?
+     
+     <img width="320" height="159" alt="image" src="https://github.com/user-attachments/assets/110afb28-96e4-4c5d-ae32-c8032cffa73f" />
